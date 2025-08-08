@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+.next
+.env*
+pnpm-lock.yaml
+.DS_Store
+.cursor/
+Documentation/
+.turbo/

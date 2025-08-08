@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "paths": {
+      "ui_base/*": ["../ui-base/src/*"]
+    }
+  },
+  "include": ["src", "src/types"]
+}

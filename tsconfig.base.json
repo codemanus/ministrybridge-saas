@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared-types/*": ["packages/shared-types/src/*"],
+      "@feature-sdk/*": ["packages/feature-sdk/src/*"],
+      "@rbac/*": ["packages/rbac/src/*"],
+      "@dal/*": ["packages/dal/src/*"],
+      "@flags/*": ["packages/flags/src/*"],
+      "@auth/*": ["packages/auth/src/*"]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx"
+  }
+}
