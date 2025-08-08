@@ -1,1 +1,2 @@
-export const name = 'ui-tech-prod';
+export const name = 'ui-base';
+export { default as App } from './App';

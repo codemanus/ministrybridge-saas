@@ -1,9 +1,14 @@
+import '@packages/ui-kit';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const BaseApp = React.lazy(() => import('ui_base/App'));
+const CampusApp = React.lazy(() => import('ui_campus/App'));
+const GroupsApp = React.lazy(() => import('ui_groups/App'));
+const StudentsApp = React.lazy(() => import('ui_students/App'));
+const TechProdApp = React.lazy(() => import('ui_tech_prod/App'));
 
 function Home() {
   const [apiUrl, setApiUrl] = React.useState('http://localhost:4000');
@@ -17,19 +22,23 @@ function Home() {
   };
 
   return (
-    <div style={{padding:16}}>
-      <h1>MinistryBridge SaaS (Shell)</h1>
-      <div>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">MinistryBridge SaaS (Shell)</h1>
+      <div className="mb-4">
         API URL:&nbsp;
-        <input style={{width:320}} value={apiUrl} onChange={e=>setApiUrl(e.target.value)} />
-        <button onClick={check} style={{marginLeft:8}}>Check /health</button>
+        <input className="w-80 border border-gray-300 rounded px-2 py-1" value={apiUrl} onChange={e=>setApiUrl(e.target.value)} />
+        <button onClick={check} className="ml-2 px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">Check /health</button>
       </div>
-      {resp && <pre>{JSON.stringify(resp,null,2)}</pre>}
-      {err && <div style={{color:'crimson'}}>{err}</div>}
-      <hr/>
-      <nav style={{display:'flex',gap:12}}>
-        <Link to="/">Home</Link>
-        <Link to="/base">Base Module</Link>
+      {resp && <pre className="bg-gray-100 p-2 rounded">{JSON.stringify(resp,null,2)}</pre>}
+      {err && <div className="text-red-600">{err}</div>}
+      <hr className="my-4"/>
+      <nav className="flex gap-3">
+        <Link to="/" className="text-blue-600 hover:underline">Home</Link>
+        <Link to="/base" className="text-blue-600 hover:underline">Base Module</Link>
+        <Link to="/campus" className="text-blue-600 hover:underline">Campus</Link>
+        <Link to="/groups" className="text-blue-600 hover:underline">Groups</Link>
+        <Link to="/students" className="text-blue-600 hover:underline">Students</Link>
+        <Link to="/tech" className="text-blue-600 hover:underline">Tech & Production</Link>
       </nav>
     </div>
   );
@@ -41,6 +50,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/base/*" element={<React.Suspense fallback="Loading…"><BaseApp/></React.Suspense>} />
+        <Route path="/campus/*" element={<React.Suspense fallback="Loading…"><CampusApp/></React.Suspense>} />
+        <Route path="/groups/*" element={<React.Suspense fallback="Loading…"><GroupsApp/></React.Suspense>} />
+        <Route path="/students/*" element={<React.Suspense fallback="Loading…"><StudentsApp/></React.Suspense>} />
+        <Route path="/tech/*" element={<React.Suspense fallback="Loading…"><TechProdApp/></React.Suspense>} />
       </Routes>
     </BrowserRouter>
   );

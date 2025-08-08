@@ -14,13 +14,20 @@ export default {
   },
   resolve: { extensions: ['.tsx', '.ts', '.js'] },
   module: {
-    rules: [{ test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ }]
+    rules: [
+      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      { test: /\.css$/, use: ['style-loader', 'css-loader', 'postcss-loader'] }
+    ]
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'shell',
       remotes: {
-        ui_base: 'ui_base@http://localhost:3001/remoteEntry.js'
+        ui_base: 'ui_base@http://localhost:3001/remoteEntry.js',
+        ui_campus: 'ui_campus@http://localhost:3002/remoteEntry.js',
+        ui_groups: 'ui_groups@http://localhost:3003/remoteEntry.js',
+        ui_students: 'ui_students@http://localhost:3004/remoteEntry.js',
+        ui_tech_prod: 'ui_tech_prod@http://localhost:3005/remoteEntry.js'
       },
       shared: {
         react: { singleton: true, eager: true },
