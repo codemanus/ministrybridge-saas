@@ -21,7 +21,7 @@ export default function App() {
               <CardContent>
                 <p className="text-gray-600 mb-4">Manage core system settings and configurations</p>
                 <div className="flex gap-2">
-                  <Button variant="primary">Primary Action</Button>
+                  <Button variant="default">Primary Action</Button>
                   <Button variant="secondary">Secondary Action</Button>
                 </div>
               </CardContent>

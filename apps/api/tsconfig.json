@@ -4,7 +4,19 @@
     "outDir": "dist",
     "rootDir": "src",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/disabled",
+    "../../packages",
+    "../../apps/ui-base",
+    "../../apps/ui-campus", 
+    "../../apps/ui-groups",
+    "../../apps/ui-students",
+    "../../apps/ui-tech-prod",
+    "../../apps/shell",
+    "node_modules"
+  ]
 }

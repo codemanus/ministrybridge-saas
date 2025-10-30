@@ -30,4 +30,36 @@ export class FeaturesController {
       enabled: !currentValue,
     };
   }
+
+  @Get('campus')
+  async getCampusFeatures() {
+    return {
+      message: 'Campus features endpoint - requires ui-campus feature flag',
+      features: ['campus-management', 'location-tracking'],
+    };
+  }
+
+  @Get('groups')
+  async getGroupsFeatures() {
+    return {
+      message: 'Groups features endpoint - requires ui-groups feature flag',
+      features: ['small-groups', 'ministry-teams'],
+    };
+  }
+
+  @Get('students')
+  async getStudentsFeatures() {
+    return {
+      message: 'Students features endpoint - requires ui-students feature flag',
+      features: ['student-registration', 'attendance-tracking'],
+    };
+  }
+
+  @Get('tech-prod')
+  async getTechProdFeatures() {
+    return {
+      message: 'Tech & Production features endpoint - requires ui-tech-prod feature flag',
+      features: ['technical-support', 'production-management'],
+    };
+  }
 }

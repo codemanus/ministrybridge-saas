@@ -1,7 +1,7 @@
 {
   "name": "ministrybridge-saas",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.20.0",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -13,8 +13,16 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@types/node": "^22.17.0",
-    "turbo": "^2.5.5",
-    "typescript": "^5.9.2"
+    "@types/node": "^24.9.2",
+    "drizzle-kit": "^0.31.6",
+    "shadcn": "^3.5.0",
+    "turbo": "^2.5.8",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.78.0",
+    "drizzle-orm": "^0.44.7",
+    "pg": "^8.16.3",
+    "postgres": "^3.4.7"
   }
 }

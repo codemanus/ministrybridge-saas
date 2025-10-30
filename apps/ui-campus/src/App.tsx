@@ -1,17 +1,54 @@
+import '@packages/ui-kit';
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { Button, Card, CardHeader, CardTitle, CardContent, Separator, Input, Label } from '@packages/ui-kit';
 
 export default function App() {
   return (
-    <div style={{padding: 16}}>
-      <h1>Campus Module</h1>
-      <nav style={{display: 'flex', gap: 12, marginBottom: 16}}>
-        <Link to="/">Dashboard</Link>
-        <Link to="/about">About</Link>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Campus Module</h1>
+      <nav className="flex gap-3 mb-4">
+        <Link to="/" className="text-blue-600 hover:underline">Dashboard</Link>
+        <Link to="/about" className="text-blue-600 hover:underline">About</Link>
       </nav>
       <Routes>
-        <Route index element={<div>Campus Dashboard - Manage campus locations and settings</div>} />
-        <Route path="about" element={<div>About Campus Module - Location management and campus configuration</div>} />
+        <Route index element={
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Campus Dashboard</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">Manage campus locations and settings</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <Label htmlFor="campus-name">Campus Name</Label>
+                    <Input id="campus-name" placeholder="Central Campus" />
+                  </div>
+                  <div>
+                    <Label htmlFor="campus-code">Campus Code</Label>
+                    <Input id="campus-code" placeholder="CENT" />
+                  </div>
+                </div>
+                <Separator className="my-3"/>
+                <div className="flex gap-2">
+                  <Button>Save</Button>
+                  <Button variant="secondary">Cancel</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        } />
+        <Route path="about" element={
+          <Card>
+            <CardHeader>
+              <CardTitle>About Campus Module</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">Location management and campus configuration</p>
+            </CardContent>
+          </Card>
+        } />
       </Routes>
     </div>
   );

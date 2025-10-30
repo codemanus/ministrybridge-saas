@@ -11,8 +11,11 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "echo lint: auth"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@workos-inc/node": "^7.72.1",
+    "jose": "^6.1.0"
+  },
   "devDependencies": {
-    "typescript": "^5.6.3"
+    "typescript": "^5.9.3"
   }
 }

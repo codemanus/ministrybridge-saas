@@ -9,10 +9,12 @@
     "dev": "echo dev: feature-sdk",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "echo lint: feature-sdk"
+    "lint": "echo lint: feature-sdk",
+    "test": "echo test: feature-sdk"
   },
-  "dependencies": {},
   "devDependencies": {
-    "typescript": "^5.6.3"
+    "@types/react": "^19.2.2",
+    "react": "^19.2.0",
+    "typescript": "^5.9.3"
   }
 }

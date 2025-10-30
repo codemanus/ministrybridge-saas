@@ -6,7 +6,7 @@ const { ModuleFederationPlugin } = webpack.container; // <-- get it from webpack
 
 export default {
   mode: 'development',
-  entry: path.resolve(process.cwd(), 'src/main.tsx'),
+  entry: path.resolve(process.cwd(), 'src/feature-shell.tsx'),
   devServer: {
     port: 3000,
     historyApiFallback: true,
@@ -35,7 +35,13 @@ export default {
         'react-router-dom': { singleton: true, eager: true }
       }
     }),
-    new HtmlWebpackPlugin({ template: path.resolve(process.cwd(), 'public/index.html') })
+    new HtmlWebpackPlugin({ template: path.resolve(process.cwd(), 'public/index.html') }),
+    new webpack.DefinePlugin({
+      'process.env.NEXT_PUBLIC_WORKOS_CLIENT_ID': JSON.stringify(process.env.NEXT_PUBLIC_WORKOS_CLIENT_ID || ''),
+      'process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI': JSON.stringify(process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI || ''),
+      'process.env.NEXT_PUBLIC_WORKOS_ORGANIZATION_ID': JSON.stringify(process.env.NEXT_PUBLIC_WORKOS_ORGANIZATION_ID || ''),
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || 'http://localhost:4000')
+    })
   ],
   output: { publicPath: 'auto', clean: true }
 };
