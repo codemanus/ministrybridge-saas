@@ -2,6 +2,7 @@ import '@packages/ui-kit';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { useCanAccess } from './permissions.js';
 import axios from 'axios';
 
 const BaseApp = React.lazy(() => import('ui_base/App'));
@@ -14,6 +15,10 @@ function Home() {
   const [apiUrl, setApiUrl] = React.useState('http://localhost:4000');
   const [resp, setResp] = React.useState<any>(null);
   const [err, setErr] = React.useState('');
+  const canCampus = useCanAccess('ui_campus');
+  const canGroups = useCanAccess('ui_groups');
+  const canStudents = useCanAccess('ui_students');
+  const canTech = useCanAccess('ui_tech_prod');
 
   const check = async () => {
     setErr(''); setResp(null);
@@ -35,10 +40,10 @@ function Home() {
       <nav className="flex gap-3">
         <Link to="/" className="text-blue-600 hover:underline">Home</Link>
         <Link to="/base" className="text-blue-600 hover:underline">Base Module</Link>
-        <Link to="/campus" className="text-blue-600 hover:underline">Campus</Link>
-        <Link to="/groups" className="text-blue-600 hover:underline">Groups</Link>
-        <Link to="/students" className="text-blue-600 hover:underline">Students</Link>
-        <Link to="/tech" className="text-blue-600 hover:underline">Tech & Production</Link>
+        {canCampus && <Link to="/campus" className="text-blue-600 hover:underline">Campus</Link>}
+        {canGroups && <Link to="/groups" className="text-blue-600 hover:underline">Groups</Link>}
+        {canStudents && <Link to="/students" className="text-blue-600 hover:underline">Students</Link>}
+        {canTech && <Link to="/tech" className="text-blue-600 hover:underline">Tech & Production</Link>}
       </nav>
     </div>
   );

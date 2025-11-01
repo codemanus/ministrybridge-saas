@@ -1,5 +1,5 @@
 import { and, eq, inArray } from 'drizzle-orm';
-import { db } from '@packages/flags/src/database.js';
+import { db } from '../database.js';
 import { roleTypePermissions, userPermissionOverrides } from '../schema/rbac.js';
 
 export type PermissionEffect = 'allow' | 'deny';
@@ -25,7 +25,7 @@ export async function getRoleTypePermissions(
       )
     );
 
-  return new Set(rows.map((r) => r.permissionKey));
+  return new Set(rows.map((r: { permissionKey: string }) => r.permissionKey));
 }
 
 export async function getUserPermissionOverrides(
@@ -45,7 +45,7 @@ export async function getUserPermissionOverrides(
       )
     );
 
-  return rows.map((r) => ({ permissionKey: r.permissionKey, effect: r.effect as PermissionEffect }));
+  return rows.map((r: { permissionKey: string; effect: PermissionEffect }) => ({ permissionKey: r.permissionKey, effect: r.effect }));
 }
 
 

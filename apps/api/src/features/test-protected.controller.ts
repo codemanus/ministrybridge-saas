@@ -1,44 +1,48 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { SimpleFeatureFlagGuard } from '../guards/simple-feature-flag.guard.js';
+import { RbacGuard } from '../guards/rbac.guard.js';
+import { RequirePermission } from '../decorators/require-permission.decorator.js';
 
 @Controller('test-protected')
-@UseGuards(SimpleFeatureFlagGuard)
+@UseGuards(RbacGuard)
 export class TestProtectedController {
   
   @Get('campus')
+  @RequirePermission('ui_campus')
   async getCampusData() {
     return {
       message: 'Campus data - protected by ui-campus feature flag',
       data: {
-        campuses: ['Main Campus', 'North Campus', 'South Campus'],
+        campuses: ['Main Campus', 'Lexington Campus', 'West Campus'],
         features: ['location-tracking', 'attendance-monitoring'],
       },
     };
   }
 
   @Get('groups')
+  @RequirePermission('ui_groups')
   async getGroupsData() {
     return {
       message: 'Groups data - protected by ui-groups feature flag',
       data: {
-        groups: ['Youth Group', 'Bible Study', 'Prayer Team'],
+        groups: ['Community Group', 'Bible Study', 'Prayer Team'],
         features: ['member-management', 'event-scheduling'],
       },
     };
   }
 
   @Get('students')
+  @RequirePermission('ui_students')
   async getStudentsData() {
     return {
       message: 'Students data - protected by ui-students feature flag',
       data: {
-        students: ['John Doe', 'Jane Smith', 'Bob Johnson'],
-        features: ['registration', 'attendance-tracking'],
+        features: ['registration', 'attendance-tracking', 'progress-tracking'],
       },
     };
   }
 
   @Get('tech-prod')
+  @RequirePermission('ui_tech_prod')
   async getTechProdData() {
     return {
       message: 'Tech & Production data - protected by ui-tech-prod feature flag',
